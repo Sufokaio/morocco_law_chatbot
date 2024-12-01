@@ -124,8 +124,6 @@ class Chatbot:
         unique_results = {result.page_content for result in all_results}
         sources_list = list(unique_results)[:4]
 
-
-        sources_list = [result.page_content for result in results]
         user_prompt = f"Voici la question de l'utilisateur sur le droit du travail: {query}\nvoici les sources que tu dois utiliser pour répondre a cette question: {sources_list}"
 
         messages = [
