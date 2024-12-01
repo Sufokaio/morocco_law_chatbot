@@ -72,6 +72,8 @@ if os.path.exists(file_path) and os.path.isfile(file_path):
     
     # Display the file contents in the Streamlit app
     st.write("Contents of 'travail.txt':")
+    st.write(file_path)
+
     st.text(file_content)
 else:
     st.write("The file 'travail.txt' does not exist in the 'pages' directory.")
