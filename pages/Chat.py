@@ -55,7 +55,7 @@ class Chatbot:
     def translate_text(self, text, target_lang):
         pages_dir = os.path.join(os.getcwd(), 'pages')
 
-        file_path = os.path.join("Google_KEY.json")
+        file_path = os.path.join(pages_dir, "Google_KEY.json")
         client = translate.Client.from_service_account_json(file_path)
         result = client.translate(text, target_language=target_lang)
         return result['translatedText']
