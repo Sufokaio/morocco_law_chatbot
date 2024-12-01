@@ -1,3 +1,4 @@
+import json
 import streamlit as st
 import requests
 
@@ -52,11 +53,30 @@ contrats_index = FAISS.load_local("contrats" + "_index", embeddings, allow_dange
 
 class Chatbot:
 
-    def translate_text(self, text, target_lang):
-        pages_dir = os.path.join(os.getcwd(), 'pages')
+    def translate_text(self, text, target_lang):    
+        google_cloud_secrets = st.secrets["google_cloud"]
+        
+        # Create a dictionary from the secrets
+        credentials = {
+            "type": google_cloud_secrets["type"],
+            "project_id": google_cloud_secrets["project_id"],
+            "private_key_id": google_cloud_secrets["private_key_id"],
+            "private_key": google_cloud_secrets["private_key"],
+            "client_email": google_cloud_secrets["client_email"],
+            "client_id": google_cloud_secrets["client_id"],
+            "auth_uri": google_cloud_secrets["auth_uri"],
+            "token_uri": google_cloud_secrets["token_uri"],
+            "auth_provider_x509_cert_url": google_cloud_secrets["auth_provider_x509_cert_url"],
+            "client_x509_cert_url": google_cloud_secrets["client_x509_cert_url"]
+        }
 
-        file_path = os.path.join(pages_dir, "Google_KEY.json")
-        client = translate.Client.from_service_account_json(file_path)
+        # Convert the dictionary to a json string
+        credentials_json = json.dumps(credentials)
+        
+        # Use the credentials to authenticate with Google Cloud Translate
+        client = translate.Client.from_service_account_info(json.loads(credentials_json))
+        
+        # Translate the text
         result = client.translate(text, target_language=target_lang)
         return result['translatedText']
     
