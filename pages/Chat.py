@@ -41,8 +41,8 @@ def save_faiss_index(speciality):
     faiss_index = FAISS.from_texts(chunks, embeddings)
     faiss_index.save_local( speciality + "_index")
 
-for speciality in specialities:
-    save_faiss_index(speciality)
+#for speciality in specialities:
+ #   save_faiss_index(speciality)
 
 travail_index = FAISS.load_local("travail" + "_index", embeddings, allow_dangerous_deserialization= True)
 commerce_index = FAISS.load_local("commerce" + "_index", embeddings, allow_dangerous_deserialization= True)
