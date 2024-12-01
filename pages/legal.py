@@ -1,4 +1,4 @@
-__package__
+
 
 import os
 import glob
