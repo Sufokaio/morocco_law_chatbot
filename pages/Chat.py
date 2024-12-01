@@ -19,6 +19,25 @@ from google.cloud import translate_v2 as translate
 
 from pathlib import Path
 
+
+import os
+import streamlit as st
+
+# Get the current directory
+current_dir = os.getcwd()
+
+# List all files in the current directory
+files_in_directory = os.listdir(current_dir)
+
+# Filter out directories if you only want files
+files_only = [file for file in files_in_directory if os.path.isfile(os.path.join(current_dir, file))]
+
+# Log the files in the Streamlit app
+st.write("Files in the current directory:")
+st.write(files_only)
+
+
+
 search_directory = Path.home() 
 
 
