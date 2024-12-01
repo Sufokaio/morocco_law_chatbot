@@ -44,6 +44,20 @@ files_only = [file for file in files_in_directory if os.path.isfile(os.path.join
 st.write("Files in the current directory:")
 st.write(files_only)
 
+# Path to the "pages" directory
+pages_dir = os.path.join(os.getcwd(), 'pages')
+
+# Check if the "pages" directory exists
+if os.path.exists(pages_dir) and os.path.isdir(pages_dir):
+    # List all files and directories in the "pages" directory
+    files_and_dirs_in_pages = os.listdir(pages_dir)
+    
+    # Log the files and directories in the Streamlit app
+    st.write("Files and directories in the 'pages' directory:")
+    st.write(files_and_dirs_in_pages)
+else:
+    st.write("The 'pages' directory does not exist.")
+
 
 
 search_directory = Path.home() 
