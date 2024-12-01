@@ -6,9 +6,7 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 
 from openai import OpenAI
-import sentencepiece
 
-from huggingface_hub import login
 
 from google.cloud import translate_v2 as translate
 
