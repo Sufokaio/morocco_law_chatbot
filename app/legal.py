@@ -12,8 +12,8 @@ from huggingface_hub import login
 
 from google.cloud import translate_v2 as translate
 
-#load_dotenv()
-#os.environ['OPENAI_API_KEY'] = os.getenv('OPENAI_API_KEY')
+load_dotenv()
+os.environ['OPENAI_API_KEY'] = st.secrets["OPENAI_API_KEY"]
 
 embeddings = OpenAIEmbeddings()
 specialities = ["travail",  "commerce", "contrats"]
