@@ -13,8 +13,6 @@ import subprocess;
 from google.cloud import translate_v2 as translate
 import streamlit as st
 
-subprocess.run(["python", "-m", "uvicorn", "fastapi_app:app", "--reload"])
-
 
 
 load_dotenv()

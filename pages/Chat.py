@@ -1,6 +1,12 @@
 import streamlit as st
 import requests
 
+from app import legal
+
+
+chatbot = Chatbot() 
+
+
 
 #maybe
 if 'messages' not in st.session_state:
@@ -153,12 +159,22 @@ user_input = st.text_input("Posez votre question :", key="input")
 #     unsafe_allow_html=True
 # ):
 if st.button("Envoyer", key="send_button") and user_input:
-    response = requests.post(
-        "http://localhost:8000/api/chat", 
-        json={"question": user_input, "speciality": speciality}
-    )
-    if response.status_code == 200:
-        bot_response = response.json().get("answer")
+    # response = requests.post(
+    #     "http://localhost:8000/api/chat", 
+    #     json={"question": user_input, "speciality": speciality}
+    # )
+    
+    # if response.status_code == 200:
+    #     bot_response = response.json().get("answer")
+    
+    # else:
+    #     bot_response = "Je suis désolé, une erreur s'est produite."
+
+    response = chatbot.get_answer(user_input, speciality)
+
+    if response:
+        bot_response = response
+    
     else:
         bot_response = "Je suis désolé, une erreur s'est produite."
 
