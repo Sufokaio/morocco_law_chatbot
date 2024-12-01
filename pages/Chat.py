@@ -17,6 +17,14 @@ import subprocess;
 from google.cloud import translate_v2 as translate
 
 
+from pathlib import Path
+
+# Define the directory where you want to search. Here we search the current directory.
+search_directory = Path('.')  # Current directory, you can change it to another path if needed
+
+# Search for the file
+
+
 
 load_dotenv()
 os.environ['OPENAI_API_KEY'] = st.secrets["OPENAI_API_KEY"]
@@ -25,7 +33,8 @@ embeddings = OpenAIEmbeddings()
 specialities = ["travail",  "commerce", "contrats"]
 
 def save_faiss_index(speciality):
-    with open(speciality + ".txt", "r", encoding="utf-8-sig") as file:
+    file_path = search_directory / speciality +'.txt'
+    with open(file_path, "r", encoding="utf-8-sig") as file:
         data = file.read()
     text_splitter = CharacterTextSplitter(chunk_size=200, chunk_overlap=200)
     chunks = text_splitter.split_text(data)
