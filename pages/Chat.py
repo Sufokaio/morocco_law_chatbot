@@ -58,6 +58,25 @@ if os.path.exists(pages_dir) and os.path.isdir(pages_dir):
 else:
     st.write("The 'pages' directory does not exist.")
 
+    import os
+import streamlit as st
+
+# Path to the "travail.txt" file in the "pages" directory
+file_path = os.path.join(os.getcwd(), 'pages', 'travail.txt')
+
+# Check if the "travail.txt" file exists
+if os.path.exists(file_path) and os.path.isfile(file_path):
+    # Open and read the file contents
+    with open(file_path, 'r') as file:
+        file_content = file.read()
+    
+    # Display the file contents in the Streamlit app
+    st.write("Contents of 'travail.txt':")
+    st.text(file_content)
+else:
+    st.write("The file 'travail.txt' does not exist in the 'pages' directory.")
+
+
 
 
 search_directory = Path.home() 
