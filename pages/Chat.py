@@ -20,68 +20,8 @@ from google.cloud import translate_v2 as translate
 import os
 import streamlit as st
 
-# Get the current directory
-current_dir = os.getcwd()
-
-# List all files and directories in the current directory
-files_and_dirs = os.listdir(current_dir)
-
-# Log the files and directories in the Streamlit app
-st.write("Files and directories in the current directory:")
-st.write(files_and_dirs)
 
 
-# Get the current directory
-current_dir = os.getcwd()
-
-# List all files in the current directory
-files_in_directory = os.listdir(current_dir)
-
-# Filter out directories if you only want files
-files_only = [file for file in files_in_directory if os.path.isfile(os.path.join(current_dir, file))]
-
-# Log the files in the Streamlit app
-st.write("Files in the current directory:")
-st.write(files_only)
-
-# Path to the "pages" directory
-pages_dir = os.path.join(os.getcwd(), 'pages')
-
-# Check if the "pages" directory exists
-if os.path.exists(pages_dir) and os.path.isdir(pages_dir):
-    # List all files and directories in the "pages" directory
-    files_and_dirs_in_pages = os.listdir(pages_dir)
-    
-    # Log the files and directories in the Streamlit app
-    st.write("Files and directories in the 'pages' directory:")
-    st.write(files_and_dirs_in_pages)
-else:
-    st.write("The 'pages' directory does not exist.")
-
-    import os
-import streamlit as st
-
-# Path to the "travail.txt" file in the "pages" directory
-file_path = os.path.join(os.getcwd(), 'pages', 'travail.txt')
-
-# Check if the "travail.txt" file exists
-if os.path.exists(file_path) and os.path.isfile(file_path):
-    # Open and read the file contents
-    with open(file_path, 'r') as file:
-        file_content = file.read()
-    
-    # Display the file contents in the Streamlit app
-    st.write("Contents of 'travail.txt':")
-    st.write(file_path)
-
-    st.text(file_content)
-else:
-    st.write("The file 'travail.txt' does not exist in the 'pages' directory.")
-
-
-
-
-search_directory = Path.home() 
 
 
 load_dotenv()
@@ -91,7 +31,9 @@ embeddings = OpenAIEmbeddings()
 specialities = ["travail",  "commerce", "contrats"]
 
 def save_faiss_index(speciality):
-    file_path = search_directory / (speciality +'.txt')
+    pages_dir = os.path.join(os.getcwd(), 'pages')
+
+    file_path = os.path.join(pages_dir, speciality +'.txt')
     with open(file_path, "r", encoding="utf-8-sig") as file:
         data = file.read()
     text_splitter = CharacterTextSplitter(chunk_size=200, chunk_overlap=200)
