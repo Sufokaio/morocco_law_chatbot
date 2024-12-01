@@ -25,7 +25,7 @@ embeddings = OpenAIEmbeddings()
 specialities = ["travail",  "commerce", "contrats"]
 
 def save_faiss_index(speciality):
-    with open("data/" + speciality + ".txt", "r", encoding="utf-8-sig") as file:
+    with open(speciality + ".txt", "r", encoding="utf-8-sig") as file:
         data = file.read()
     text_splitter = CharacterTextSplitter(chunk_size=200, chunk_overlap=200)
     chunks = text_splitter.split_text(data)
@@ -44,7 +44,7 @@ contrats_index = FAISS.load_local("contrats" + "_index", embeddings, allow_dange
 class Chatbot:
 
     def translate_text(self, text, target_lang):
-        client = translate.Client.from_service_account_json("data/Google_KEY.json")
+        client = translate.Client.from_service_account_json("Google_KEY.json")
         result = client.translate(text, target_language=target_lang)
         return result['translatedText']
     
