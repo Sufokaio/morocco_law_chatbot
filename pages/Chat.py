@@ -33,7 +33,7 @@ embeddings = OpenAIEmbeddings()
 specialities = ["travail",  "commerce", "contrats"]
 
 def save_faiss_index(speciality):
-    file_path = search_directory / speciality +'.txt'
+    file_path = search_directory / (speciality +'.txt')
     with open(file_path, "r", encoding="utf-8-sig") as file:
         data = file.read()
     text_splitter = CharacterTextSplitter(chunk_size=200, chunk_overlap=200)
