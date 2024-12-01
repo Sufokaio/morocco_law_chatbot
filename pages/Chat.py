@@ -53,7 +53,10 @@ contrats_index = FAISS.load_local("contrats" + "_index", embeddings, allow_dange
 class Chatbot:
 
     def translate_text(self, text, target_lang):
-        client = translate.Client.from_service_account_json("Google_KEY.json")
+        pages_dir = os.path.join(os.getcwd(), 'pages')
+
+        file_path = os.path.join(pages_dir, speciality +'.txt')
+        client = translate.Client.from_service_account_json(file_path)
         result = client.translate(text, target_language=target_lang)
         return result['translatedText']
     
