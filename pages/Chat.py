@@ -19,11 +19,7 @@ from google.cloud import translate_v2 as translate
 
 from pathlib import Path
 
-# Define the directory where you want to search. Here we search the current directory.
-search_directory = Path('/')  # Current directory, you can change it to another path if needed
-
-# Search for the file
-
+search_directory = Path.home() 
 
 
 load_dotenv()
