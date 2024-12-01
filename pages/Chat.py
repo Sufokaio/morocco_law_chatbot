@@ -1,10 +1,10 @@
 import streamlit as st
 import requests
 
-from app import legal
+from app.legal import Chatbot
 
 
-chatbot = legal.Chatbot() 
+chatbot = Chatbot() 
 
 
 
