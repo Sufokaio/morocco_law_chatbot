@@ -17,11 +17,19 @@ import subprocess;
 from google.cloud import translate_v2 as translate
 
 
-from pathlib import Path
-
-
 import os
 import streamlit as st
+
+# Get the current directory
+current_dir = os.getcwd()
+
+# List all files and directories in the current directory
+files_and_dirs = os.listdir(current_dir)
+
+# Log the files and directories in the Streamlit app
+st.write("Files and directories in the current directory:")
+st.write(files_and_dirs)
+
 
 # Get the current directory
 current_dir = os.getcwd()
