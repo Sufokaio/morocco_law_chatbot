@@ -4,7 +4,7 @@ import requests
 from app import legal
 
 
-chatbot = Chatbot() 
+chatbot = legal.Chatbot() 
 
 
 
